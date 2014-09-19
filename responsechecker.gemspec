@@ -5,7 +5,7 @@ require 'responsechecker/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "responsechecker"
-  spec.version       = Responsechecker::VERSION
+  spec.version       = ResponseChecker::VERSION
   spec.authors       = ["Najaf Ali"]
   spec.email         = ["ali@happybearsoftware.com"]
   spec.summary       = %q{Checks HTTP responses for basic security features}
