@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 RSpec.describe FrameOptionsCheck do
-  let (:deny_response)       { { 'x-frame-options' => 'DENY' } }
-  let (:sameorigin_response) { { 'x-frame-options' => 'SAMEORIGIN' } }
-  let (:banana_response)     { { 'x-frame-options' => 'BANANA' } }
-  let (:unset_response)      { {} }
-  let (:check)               { FrameOptionsCheck.new }
+  let(:deny_response)       { { 'x-frame-options' => 'DENY' } }
+  let(:sameorigin_response) { { 'x-frame-options' => 'SAMEORIGIN' } }
+  let(:banana_response)     { { 'x-frame-options' => 'BANANA' } }
+  let(:unset_response)      { {} }
+  let(:check)               { FrameOptionsCheck.new }
 
   describe '#name' do
     it 'is X-Frame-Options' do
-      expect(check.name).to eq "X-Frame-Options"
+      expect(check.name).to eq 'X-Frame-Options'
     end
   end
 
-  describe "#description" do
+  describe '#description' do
     it 'is implemented' do
       expect(check).to respond_to :description
     end
