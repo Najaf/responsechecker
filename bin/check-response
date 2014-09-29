@@ -1,0 +1,36 @@
+#! /usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+require_relative '../lib/responsechecker'
+include ResponseChecker
+
+def colour(code, string)
+  "\033[#{code}m#{string}\033[0m"
+end
+
+def red(string)
+  colour(31, string)
+end
+
+def green(string)
+  colour(32, string)
+end
+
+checker = Checker.new(ARGV.first).tap do |checker|
+  checker << ContentTypeOptionsCheck.new
+  checker << FrameOptionsCheck.new
+  checker << HttpOnlyCookieCheck.new
+  checker << SecureCookieCheck.new
+  checker << StrictTransportSecurityCheck.new
+  checker << XssProtectionCheck.new
+end
+
+results = checker.perform_checks
+
+results.each do |name, description, result|
+  print result ? '[✓]' : '[✗]'
+  print " #{result ? green(name) : red(name)}\n"
+end
+
