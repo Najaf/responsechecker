@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Najaf Ali']
   spec.email         = ['ali@happybearsoftware.com']
   spec.summary       = 'Checks HTTP responses for basic security features'
-  spec.description   = 'TODO: Write a longer description. Optional.'
+  spec.description   = ''
   spec.homepage      = ''
   spec.license       = 'MIT'
 
