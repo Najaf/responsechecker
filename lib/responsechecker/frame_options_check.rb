@@ -8,7 +8,8 @@ module ResponseChecker
     end
 
     def perform(_, response)
-      %w(DENY SAMEORIGIN).include? response['x-frame-options'].to_s
+      return false if response['x-frame-options'].nil?
+      Array(response.to_hash['x-frame-options']).all? { |x| %w(DENY SAMEORIGIN).include?(x.strip) }
     end
   end
 end
