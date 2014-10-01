@@ -1,6 +1,13 @@
 # Responsechecker
 
-TODO: Write a gem description
+Given a URL, checks it for the following header (options)
+
+* X-Frame-Options => [DENY, SAMEORIGIN]
+* HttpOnly cookies
+* Secure cookies
+* X-Content-Type-Options => nosniff
+* Strict-Transport-Security
+* X-XSS-Protection
 
 ## Installation
 
@@ -20,12 +27,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/responsechecker/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```bash
+$ check-response https://people-finder.dsd.io/sessions/new
+[✓] X-Content-Type-Options
+[✓] X-Frame-Options
+[✓] HttpOnly cookie
+[✗] Secure cookie
+[✗] Strict transport security
+[✓] X-XSS-Protection
+```
