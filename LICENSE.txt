@@ -1,4 +1,4 @@
-Copyright (c) 2014 Najaf Ali
+Copyright (c) 2014 Ministry of Justice
 
 MIT License
 
