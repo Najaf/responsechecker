@@ -25,5 +25,16 @@ module ResponseChecker
         [check.name, check.description, check.perform(request, response)]
       end
     end
+
+    def self.new_with_all_checks(url)
+      self.new(url).tap do |c|
+        c << ContentTypeOptionsCheck.new
+        c << FrameOptionsCheck.new
+        c << HttpOnlyCookieCheck.new
+        c << SecureCookieCheck.new
+        c << StrictTransportSecurityCheck.new
+        c << XssProtectionCheck.new
+      end
+    end
   end
 end

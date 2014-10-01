@@ -18,14 +18,7 @@ def green(string)
   colour(32, string)
 end
 
-checker = Checker.new(ARGV.first).tap do |checker|
-  checker << ContentTypeOptionsCheck.new
-  checker << FrameOptionsCheck.new
-  checker << HttpOnlyCookieCheck.new
-  checker << SecureCookieCheck.new
-  checker << StrictTransportSecurityCheck.new
-  checker << XssProtectionCheck.new
-end
+checker = Checker.new_with_all_checks(ARGV.first)
 
 results = checker.perform_checks
 
