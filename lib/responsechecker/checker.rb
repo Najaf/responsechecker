@@ -15,14 +15,12 @@ module ResponseChecker
 
     def perform_checks
       uri = URI(@url)
-      request, response = nil, nil
 
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        request  = Net::HTTP::Get.new(uri)
-        response = http.request request
-      end
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true if 'https' == uri.scheme
+      request  = Net::HTTP::Get.new(uri)
+      response = http.request request
 
-      
       @checks.map do |check|
         [check.name, check.description, check.perform(request, response)]
       end
