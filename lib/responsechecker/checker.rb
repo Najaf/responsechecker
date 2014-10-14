@@ -16,10 +16,8 @@ module ResponseChecker
     def perform_checks
       uri = URI(@url)
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true if 'https' == uri.scheme
       request  = Net::HTTP::Get.new(uri)
-      response = http.request request
+      response = get_with_redirects(uri)
 
       @checks.map do |check|
         [check.name, check.description, check.perform(request, response)]
@@ -35,6 +33,17 @@ module ResponseChecker
         c << StrictTransportSecurityCheck.new
         c << XssProtectionCheck.new
       end
+    end
+  private
+
+    def get_with_redirects(uri)
+      response = Net::HTTP.get_response(uri)
+
+      if '301' == response.code
+        response = get_with_redirects(URI.parse(response['location']))
+      end
+
+      response
     end
   end
 end
