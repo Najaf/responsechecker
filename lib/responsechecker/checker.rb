@@ -25,7 +25,7 @@ module ResponseChecker
     end
 
     def self.new_with_all_checks(url)
-      self.new(url).tap do |c|
+      new(url).tap do |c|
         c << ContentTypeOptionsCheck.new
         c << FrameOptionsCheck.new
         c << HttpOnlyCookieCheck.new
@@ -34,7 +34,8 @@ module ResponseChecker
         c << XssProtectionCheck.new
       end
     end
-  private
+
+    private
 
     def get_with_redirects(uri)
       response = Net::HTTP.get_response(uri)
