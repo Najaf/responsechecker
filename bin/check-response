@@ -22,8 +22,11 @@ checker = Checker.new_with_all_checks(ARGV.first)
 
 results = checker.perform_checks
 
-results.each do |name, description, result|
-  print result ? '[✓]' : '[✗]'
-  print " #{result ? green(name) : red(name)}\n"
-end
+reporter = JsonReporter.new(ARGV.first, results)
+puts reporter.output
+
+#results.each do |name, description, result|
+  #print result ? '[✓]' : '[✗]'
+  #print " #{result ? green(name) : red(name)}\n"
+#end
 
