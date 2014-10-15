@@ -14,13 +14,11 @@ RSpec.describe JsonReporter do
 
   let(:expected_format) do
     {
-      uri => {
-        'checks' => [
-          hash_for_check(check1),
-          hash_for_check(check2),
-          hash_for_check(check3)
-        ]
-      }
+      'checks' => [
+        hash_for_check(check1),
+        hash_for_check(check2),
+        hash_for_check(check3)
+      ]
     }
   end
 
